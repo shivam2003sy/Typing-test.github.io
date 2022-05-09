@@ -15,6 +15,7 @@ document.getElementById('start').addEventListener("click",()=>{
   quote = quotes[quoteIndex]//got a random quotes from the list 
   words =  quote.split(' ') // break a quote into a list of words with space  spilt 
   wordIndex = 0
+  document.getElementById("typed-value").disabled = false;
   
   const spanWords = words.map(function(word) { return `<span>${word} </span>`});
   const quoteElement = document.getElementById('quote');
@@ -39,8 +40,9 @@ typedValueElement.addEventListener('input', () => {
     // end of sentence
     // Display success
     const elapsedTime = new Date().getTime() - startTime;
-    const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.`;
+    const message = `CONGRATULATIONS! You finished  ${quote.length} letters in ${elapsedTime / 1000} seconds.`;
     messageElement.innerText = message;
+    document.getElementById("typed-value").disabled = true;
   } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
     // end of word
     // clear the typedValueElement for the new word
